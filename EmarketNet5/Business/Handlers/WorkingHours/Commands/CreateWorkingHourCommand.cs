@@ -1,4 +1,5 @@
 ﻿
+using System;
 using Business.BusinessAspects;
 using Business.Constants;
 using Core.Aspects.Autofac.Caching;
@@ -21,8 +22,9 @@ namespace Business.Handlers.WorkingHours.Commands
     /// </summary>
     public class CreateWorkingHourCommand : IRequest<IResult>
     {
-
+        public int RestaurantId { get; set; }
         public string Description { get; set; }
+        public bool Active { get; set; }
 
 
         public class CreateWorkingHourCommandHandler : IRequestHandler<CreateWorkingHourCommand, IResult>
@@ -48,7 +50,10 @@ namespace Business.Handlers.WorkingHours.Commands
 
                 var addedWorkingHour = new WorkingHour
                 {
+                    RestaurantId = request.RestaurantId,
                     Description = request.Description,
+                    CreateDate = DateTime.Now,
+                    Active = request.Active
 
                 };
 

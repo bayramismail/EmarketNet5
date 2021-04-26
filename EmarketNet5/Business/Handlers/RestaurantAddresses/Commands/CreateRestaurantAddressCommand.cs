@@ -1,4 +1,5 @@
 ﻿
+using System;
 using Business.BusinessAspects;
 using Business.Constants;
 using Core.Aspects.Autofac.Caching;
@@ -25,7 +26,7 @@ namespace Business.Handlers.RestaurantAddresses.Commands
         public int RestaurantId { get; set; }
         public string AddressTitle { get; set; }
         public string OpenAddress { get; set; }
-
+        public bool Active { get; set; }
 
         public class CreateRestaurantAddressCommandHandler : IRequestHandler<CreateRestaurantAddressCommand, IResult>
         {
@@ -53,6 +54,8 @@ namespace Business.Handlers.RestaurantAddresses.Commands
                     RestaurantId = request.RestaurantId,
                     AddressTitle = request.AddressTitle,
                     OpenAddress = request.OpenAddress,
+                    CreateDate = DateTime.Now,
+                    Active = request.Active
 
                 };
 

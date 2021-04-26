@@ -12,6 +12,7 @@ namespace Business.Handlers.RestaurantAddresses.ValidationRules
             RuleFor(x => x.RestaurantId).NotEmpty();
             RuleFor(x => x.AddressTitle).NotEmpty();
             RuleFor(x => x.OpenAddress).NotEmpty();
+            RuleFor(x => x.Active).NotEmpty();
 
         }
     }
@@ -22,7 +23,7 @@ namespace Business.Handlers.RestaurantAddresses.ValidationRules
             RuleFor(x => x.RestaurantId).NotEmpty();
             RuleFor(x => x.AddressTitle).NotEmpty();
             RuleFor(x => x.OpenAddress).NotEmpty();
-
+            RuleFor(x => x.Active).NotEmpty();
         }
     }
 }

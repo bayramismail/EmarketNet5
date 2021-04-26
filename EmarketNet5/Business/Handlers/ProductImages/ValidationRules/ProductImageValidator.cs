@@ -11,7 +11,7 @@ namespace Business.Handlers.ProductImages.ValidationRules
         {
             RuleFor(x => x.ProductId).NotEmpty();
             RuleFor(x => x.ImagePath).NotEmpty();
-            RuleFor(x => x.DateOfUpload).NotEmpty();
+            RuleFor(x => x.Active).NotEmpty();
 
         }
     }
@@ -21,7 +21,7 @@ namespace Business.Handlers.ProductImages.ValidationRules
         {
             RuleFor(x => x.ProductId).NotEmpty();
             RuleFor(x => x.ImagePath).NotEmpty();
-            RuleFor(x => x.DateOfUpload).NotEmpty();
+            RuleFor(x => x.Active).NotEmpty();
 
         }
     }

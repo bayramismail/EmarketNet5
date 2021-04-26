@@ -11,7 +11,7 @@ namespace Business.Handlers.RestaurantImages.ValidationRules
         {
             RuleFor(x => x.RestaurantId).NotEmpty();
             RuleFor(x => x.ImagePath).NotEmpty();
-            RuleFor(x => x.DateOfUpload).NotEmpty();
+            RuleFor(x => x.Active).NotEmpty();
 
         }
     }
@@ -21,7 +21,7 @@ namespace Business.Handlers.RestaurantImages.ValidationRules
         {
             RuleFor(x => x.RestaurantId).NotEmpty();
             RuleFor(x => x.ImagePath).NotEmpty();
-            RuleFor(x => x.DateOfUpload).NotEmpty();
+            RuleFor(x => x.Active).NotEmpty();
 
         }
     }

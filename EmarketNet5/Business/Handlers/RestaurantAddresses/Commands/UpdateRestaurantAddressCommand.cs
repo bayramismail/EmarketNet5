@@ -1,4 +1,5 @@
 ﻿
+using System;
 using Business.Constants;
 using Business.BusinessAspects;
 using Core.Aspects.Autofac.Caching;
@@ -25,7 +26,7 @@ namespace Business.Handlers.RestaurantAddresses.Commands
         public int RestaurantId { get; set; }
         public string AddressTitle { get; set; }
         public string OpenAddress { get; set; }
-
+        public bool Active { get; set; }
         public class UpdateRestaurantAddressCommandHandler : IRequestHandler<UpdateRestaurantAddressCommand, IResult>
         {
             private readonly IRestaurantAddressRepository _restaurantAddressRepository;
@@ -49,7 +50,8 @@ namespace Business.Handlers.RestaurantAddresses.Commands
                 isThereRestaurantAddressRecord.RestaurantId = request.RestaurantId;
                 isThereRestaurantAddressRecord.AddressTitle = request.AddressTitle;
                 isThereRestaurantAddressRecord.OpenAddress = request.OpenAddress;
-
+                isThereRestaurantAddressRecord.CreateDate =DateTime.Now;
+                isThereRestaurantAddressRecord.Active = request.Active;
 
                 _restaurantAddressRepository.Update(isThereRestaurantAddressRecord);
                 await _restaurantAddressRepository.SaveChangesAsync();

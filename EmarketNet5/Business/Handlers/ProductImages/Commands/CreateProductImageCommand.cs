@@ -1,4 +1,5 @@
 ﻿
+using System;
 using Business.BusinessAspects;
 using Business.Constants;
 using Core.Aspects.Autofac.Caching;
@@ -24,7 +25,7 @@ namespace Business.Handlers.ProductImages.Commands
 
         public int ProductId { get; set; }
         public string ImagePath { get; set; }
-        public System.DateTime DateOfUpload { get; set; }
+        public bool Active { get; set; }
 
 
         public class CreateProductImageCommandHandler : IRequestHandler<CreateProductImageCommand, IResult>
@@ -52,7 +53,8 @@ namespace Business.Handlers.ProductImages.Commands
                 {
                     ProductId = request.ProductId,
                     ImagePath = request.ImagePath,
-                    DateOfUpload = request.DateOfUpload,
+                    CreateDate = DateTime.Now,
+                    Active = request.Active
 
                 };
 

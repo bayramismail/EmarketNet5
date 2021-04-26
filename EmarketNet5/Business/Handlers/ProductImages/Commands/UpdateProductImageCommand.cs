@@ -1,4 +1,5 @@
 ﻿
+using System;
 using Business.Constants;
 using Business.BusinessAspects;
 using Core.Aspects.Autofac.Caching;
@@ -24,7 +25,7 @@ namespace Business.Handlers.ProductImages.Commands
         public int Id { get; set; }
         public int ProductId { get; set; }
         public string ImagePath { get; set; }
-        public System.DateTime DateOfUpload { get; set; }
+        public bool Active { get; set; }
 
         public class UpdateProductImageCommandHandler : IRequestHandler<UpdateProductImageCommand, IResult>
         {
@@ -48,7 +49,8 @@ namespace Business.Handlers.ProductImages.Commands
 
                 isThereProductImageRecord.ProductId = request.ProductId;
                 isThereProductImageRecord.ImagePath = request.ImagePath;
-                isThereProductImageRecord.DateOfUpload = request.DateOfUpload;
+                isThereProductImageRecord.CreateDate = DateTime.Now;
+                isThereProductImageRecord.Active = request.Active;
 
 
                 _productImageRepository.Update(isThereProductImageRecord);

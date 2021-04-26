@@ -13,5 +13,7 @@ namespace Entities.Concrete
         public int RestaurantId { get; set; }
         public string AddressTitle { get; set; }
         public string OpenAddress { get; set; }
+        public DateTime CreateDate { get; set; }
+        public bool Active { get; set; }
     }
 }

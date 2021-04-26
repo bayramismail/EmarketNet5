@@ -1,4 +1,5 @@
 ﻿
+using System;
 using Business.Constants;
 using Business.BusinessAspects;
 using Core.Aspects.Autofac.Caching;
@@ -24,7 +25,7 @@ namespace Business.Handlers.RestaurantImages.Commands
         public int Id { get; set; }
         public int RestaurantId { get; set; }
         public string ImagePath { get; set; }
-        public System.DateTime DateOfUpload { get; set; }
+        public bool Active { get; set; }
 
         public class UpdateRestaurantImageCommandHandler : IRequestHandler<UpdateRestaurantImageCommand, IResult>
         {
@@ -48,7 +49,8 @@ namespace Business.Handlers.RestaurantImages.Commands
 
                 isThereRestaurantImageRecord.RestaurantId = request.RestaurantId;
                 isThereRestaurantImageRecord.ImagePath = request.ImagePath;
-                isThereRestaurantImageRecord.DateOfUpload = request.DateOfUpload;
+                isThereRestaurantImageRecord.CreateDate=DateTime.Now;
+                isThereRestaurantImageRecord.Active = request.Active;
 
 
                 _restaurantImageRepository.Update(isThereRestaurantImageRecord);

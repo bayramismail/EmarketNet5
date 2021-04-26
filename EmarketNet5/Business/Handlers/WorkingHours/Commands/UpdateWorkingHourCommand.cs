@@ -1,4 +1,5 @@
 ﻿
+using System;
 using Business.Constants;
 using Business.BusinessAspects;
 using Core.Aspects.Autofac.Caching;
@@ -22,8 +23,9 @@ namespace Business.Handlers.WorkingHours.Commands
     public class UpdateWorkingHourCommand : IRequest<IResult>
     {
         public int Id { get; set; }
+        public int RestaurantId { get; set; }
         public string Description { get; set; }
-
+        public bool Active { get; set; }
         public class UpdateWorkingHourCommandHandler : IRequestHandler<UpdateWorkingHourCommand, IResult>
         {
             private readonly IWorkingHourRepository _workingHourRepository;
@@ -43,9 +45,10 @@ namespace Business.Handlers.WorkingHours.Commands
             {
                 var isThereWorkingHourRecord = await _workingHourRepository.GetAsync(u => u.Id == request.Id);
 
-
+                isThereWorkingHourRecord.RestaurantId = request.RestaurantId;
                 isThereWorkingHourRecord.Description = request.Description;
-
+                isThereWorkingHourRecord.CreateDate=DateTime.Now;
+                isThereWorkingHourRecord.Active = request.Active;
 
                 _workingHourRepository.Update(isThereWorkingHourRecord);
                 await _workingHourRepository.SaveChangesAsync();
